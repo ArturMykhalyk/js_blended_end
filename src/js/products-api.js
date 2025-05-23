@@ -2,45 +2,66 @@
 import axios from 'axios';
 
 import { STORAGE_KEYS } from './constants';
+
 STORAGE_KEYS.restoreState();
-async function getCategories() {
-  const response = await axios.get(`${STORAGE_KEYS.productsAPI}/category-list`);
-  return response.data;
-}
 
-async function getProducts(currentPage) {
-  const url = `${STORAGE_KEYS.productsAPI}?limit=${
-    STORAGE_KEYS.per_Page
-  }&skip=${(currentPage - 1) * STORAGE_KEYS.per_Page}`;
+export async function getCategories() {
+  const baseUrl = STORAGE_KEYS.productsAPI;
+  const endPoint = '/category-list';
+  const url = baseUrl + endPoint;
+
   const response = await axios.get(url);
   return response.data;
 }
 
-async function getProductsCategory(categorie, currentPage) {
-  const url = `${STORAGE_KEYS.productsAPI}/category/${categorie}?limit=${
-    STORAGE_KEYS.per_Page
-  }&skip=${(currentPage - 1) * STORAGE_KEYS.per_Page}`;
-  const response = await axios.get(url);
+export async function getProducts(currentPage) {
+  const baseUrl = STORAGE_KEYS.productsAPI;
+  const endPoint = '';
+  const url = baseUrl + endPoint;
+
+  const params = {
+    skip: (currentPage - 1) * STORAGE_KEYS.per_Page,
+    limit: STORAGE_KEYS.per_Page,
+  };
+  console.log(params.page);
+  const response = await axios.get(url, { params });
   return response.data;
 }
-async function getProductsId(id) {
-  const url = `${STORAGE_KEYS.productsAPI}/${id}`;
+
+export async function getProductsCategory(categorie, currentPage) {
+  const baseUrl = STORAGE_KEYS.productsAPI;
+  const endPoint = `/category/${categorie}`;
+  const url = baseUrl + endPoint;
+
+  const params = {
+    skip: (currentPage - 1) * STORAGE_KEYS.per_Page,
+    limit: STORAGE_KEYS.per_Page,
+  };
+  console.log(params.page);
+  const response = await axios.get(url, { params });
+  return response.data;
+}
+
+export async function getProductsId(id) {
+  const baseUrl = STORAGE_KEYS.productsAPI;
+  const endPoint = `/${id}`;
+  const url = baseUrl + endPoint;
+
   const response = await axios.get(url);
   return response.data;
 }
 
-async function getSearch(searchWord, currentPage) {
-  const url = `${STORAGE_KEYS.productsAPI}/search?limit=${
-    STORAGE_KEYS.per_Page
-  }&q=${searchWord}&skip=${(currentPage - 1) * STORAGE_KEYS.per_Page}`;
-  const response = await axios.get(url);
+export async function getSearch(searchWord, currentPage) {
+  const baseUrl = STORAGE_KEYS.productsAPI;
+  const endPoint = `/search`;
+  const url = baseUrl + endPoint;
+
+  const params = {
+    q: searchWord,
+    skip: (currentPage - 1) * STORAGE_KEYS.per_Page,
+    limit: STORAGE_KEYS.per_Page,
+  };
+
+  const response = await axios.get(url, { params });
   return response.data;
 }
-
-export {
-  getCategories,
-  getProducts,
-  getProductsCategory,
-  getProductsId,
-  getSearch,
-};

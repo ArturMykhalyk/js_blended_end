@@ -25,7 +25,7 @@ import { openModal } from './modal';
 import { STORAGE_KEYS } from './constants';
 
 // Універсальна функція для завантаження продуктів
-async function loadProducts({ search = false, loadMore = false } = {}) {
+export async function loadProducts({ search = false, loadMore = false } = {}) {
   try {
     let products;
 
@@ -77,7 +77,7 @@ async function loadProducts({ search = false, loadMore = false } = {}) {
 }
 
 // Обробка кліку по категорії
-async function handleCategoryClick(event) {
+export async function handleCategoryClick(event) {
   if (!event.target.classList.contains('categories__btn')) return;
 
   document
@@ -92,13 +92,13 @@ async function handleCategoryClick(event) {
 }
 
 // Завантаження ще продуктів
-async function handleMoreBtnClick() {
+export async function handleMoreBtnClick() {
   showLoader();
   await loadProducts({ search: STORAGE_KEYS.isSearch(), loadMore: true });
 }
 
 // Відкриття модального вікна з деталями
-async function handleProductClick(event) {
+export async function handleProductClick(event) {
   const productItem = event.target.closest('.products__item');
   if (!productItem) return;
 
@@ -123,7 +123,7 @@ async function handleProductClick(event) {
 }
 
 // Обробка форми пошуку
-async function searchForm(event) {
+export async function searchForm(event) {
   event.preventDefault();
   STORAGE_KEYS.setPage(1);
   const keyword = refs.searchInput.value.trim();
@@ -143,14 +143,14 @@ async function searchForm(event) {
 }
 
 // Очистити пошук
-async function searchClear() {
+export async function searchClear() {
   STORAGE_KEYS.setSearch(false);
   refs.searchInput.value = '';
 
   await loadProducts();
 }
 
-function handleAddBtnCart(event) {
+export function handleAddBtnCart(event) {
   if (event.target.textContent.toLowerCase().trim() === 'add to cart') {
     STORAGE_KEYS.addIdCart(STORAGE_KEYS.getIdProduct());
     STORAGE_KEYS.saveState();
@@ -163,7 +163,7 @@ function handleAddBtnCart(event) {
   updateCartCount();
 }
 
-function handleAddBtnWishlist(event) {
+export function handleAddBtnWishlist(event) {
   if (event.target.textContent.toLowerCase().trim() === 'add to wishlist') {
     STORAGE_KEYS.addIdWishlist(STORAGE_KEYS.getIdProduct());
     STORAGE_KEYS.saveState();
@@ -176,7 +176,7 @@ function handleAddBtnWishlist(event) {
   updateWishlistCount();
 }
 
-function handleBuyBtnCart() {
+export function handleBuyBtnCart() {
   iziToast.success({
     message: `Thank you for your order.`,
     position: 'topRight',
@@ -192,10 +192,11 @@ function handleBuyBtnCart() {
   showNotFound();
 }
 
-function handleScrollUpBtn() {
+export function handleScrollUpBtn() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function handletoggleTheme() {
+
+export function handletoggleTheme() {
   if (refs.toggleTheme.checked) {
     STORAGE_KEYS.setTheme('dark');
     refs.toggleTheme.checked = true;
@@ -208,15 +209,3 @@ function handletoggleTheme() {
 
   console.log(STORAGE_KEYS.getTheme());
 }
-export {
-  handleCategoryClick,
-  handleProductClick,
-  handleMoreBtnClick,
-  searchForm,
-  searchClear,
-  handleAddBtnCart,
-  handleAddBtnWishlist,
-  handleBuyBtnCart,
-  handleScrollUpBtn,
-  handletoggleTheme,
-};

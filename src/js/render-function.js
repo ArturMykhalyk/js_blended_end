@@ -10,7 +10,7 @@ import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, Zoom } from 'swiper/modules';
 import { STORAGE_KEYS } from './constants';
 
-function createCategories(categories) {
+export function createCategories(categories) {
   categories.unshift('All');
   const markup = categories
 
@@ -24,7 +24,7 @@ function createCategories(categories) {
   refs.categories.insertAdjacentHTML('beforeend', markup);
 }
 
-function createProducts(products) {
+export function createProducts(products) {
   const markup = products
 
     .map(
@@ -46,7 +46,7 @@ function createProducts(products) {
   refs.products.insertAdjacentHTML('beforeend', markup);
 }
 
-function createProductModal({
+export function createProductModal({
   title,
   description,
   price,
@@ -111,51 +111,36 @@ function createProductModal({
   });
 }
 
-function clearProducts() {
+export function clearProducts() {
   refs.products.innerHTML = '';
 }
-function showNotFound() {
+export function showNotFound() {
   document.querySelector('.not-found').classList.add('not-found--visible');
 }
 
 //  Ця функція нічого не приймає, повинна прибирати клас для відображення лоадера. Нічого не повертає
-function hideNotFound() {
+export function hideNotFound() {
   document.querySelector('.not-found').classList.remove('not-found--visible');
 }
 //  Ця функція нічого не приймає, повинна додавати клас для відображення лоадера. Нічого не повертає.
-function showLoader() {
+export function showLoader() {
   document.querySelector('.loader').classList.add('visible');
 }
 //  Ця функція нічого не приймає, повинна прибирати клас для відображення лоадера. Нічого не повертає
-function hideLoader() {
+export function hideLoader() {
   document.querySelector('.loader').classList.remove('visible');
 }
-function showLoadMoreButton() {
+export function showLoadMoreButton() {
   document.querySelector('.moreButton').classList.add('visible');
 }
-function hideLoadMoreButton() {
+export function hideLoadMoreButton() {
   document.querySelector('.moreButton').classList.remove('visible');
 }
 
-function updateCartCount() {
+export function updateCartCount() {
   refs.navCountCart.textContent = STORAGE_KEYS._idCart.length;
 }
 
-function updateWishlistCount() {
+export function updateWishlistCount() {
   refs.navCountWishlist.textContent = STORAGE_KEYS._idWishlist.length;
 }
-
-export {
-  createCategories,
-  createProducts,
-  clearProducts,
-  showNotFound,
-  hideNotFound,
-  showLoader,
-  hideLoader,
-  showLoadMoreButton,
-  hideLoadMoreButton,
-  createProductModal,
-  updateCartCount,
-  updateWishlistCount,
-};

@@ -1,6 +1,6 @@
 //Описана робота модалки - відкриття закриття і все що з модалкою повʼязано
 import { refs } from './refs';
-function openModal() {
+export function openModal() {
   refs.modal.classList.add('modal--is-open');
   document.addEventListener('keydown', closeModalOnEsc);
 
@@ -25,4 +25,3 @@ function clickNoModal(event) {
     closeModal();
   }
 }
-export { openModal };

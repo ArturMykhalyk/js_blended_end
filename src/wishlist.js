@@ -24,6 +24,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   showLoader();
   updateCartCount();
   updateWishlistCount();
+
   if (STORAGE_KEYS.getTheme() === 'dark') {
     refs.toggleTheme.checked = true;
   }

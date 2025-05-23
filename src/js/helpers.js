@@ -1,7 +1,6 @@
 //Допоміжні функції
-function totalCart(array) {
+export function totalCart(array) {
   let total = 0;
   array.map(arr => (total += arr.price));
   return total;
 }
-export { totalCart };
