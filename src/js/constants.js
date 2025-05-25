@@ -4,6 +4,8 @@ export const STORAGE_KEYS = {
   productsAPI: 'https://dummyjson.com/products',
   per_Page: 12,
   _idProduct: 0,
+  stock: 0,
+  _stocks: [],
   _idCart: [],
   _idWishlist: [],
   _category: 'All',
@@ -98,6 +100,7 @@ export const STORAGE_KEYS = {
   saveState() {
     const state = {
       idCart: this._idCart,
+      stockCart: this._stock,
       idWishlist: this._idWishlist,
       theme: this._theme,
     };

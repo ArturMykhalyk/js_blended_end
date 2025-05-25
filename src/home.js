@@ -19,11 +19,14 @@ import {
   handleAddBtnWishlist,
   handleScrollUpBtn,
   handletoggleTheme,
+  handlesubtractNumber,
+  handleAddNumber,
 } from './js/handlers';
 import { STORAGE_KEYS } from './js/constants';
 import { refs } from './js/refs';
 
 refs.categories.addEventListener('click', handleCategoryClick);
+
 refs.products.addEventListener('click', handleProductClick);
 refs.loadMoreButton.addEventListener('click', handleMoreBtnClick);
 refs.searchForm.addEventListener('submit', searchForm);
@@ -32,6 +35,8 @@ refs.btnAddCartModal.addEventListener('click', handleAddBtnCart);
 refs.btnAddWishlistModal.addEventListener('click', handleAddBtnWishlist);
 refs.scrollUpBtn.addEventListener('click', handleScrollUpBtn);
 refs.toggleTheme.addEventListener('change', handletoggleTheme);
+refs.minBtn.addEventListener('click', handlesubtractNumber);
+refs.plusBtn.addEventListener('click', handleAddNumber);
 
 window.addEventListener('DOMContentLoaded', () => {
   STORAGE_KEYS.restoreState();

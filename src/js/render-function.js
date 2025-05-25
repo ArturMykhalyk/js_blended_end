@@ -54,6 +54,7 @@ export function createProductModal({
   returnPolicy,
   shippingInformation,
   tags,
+  stock,
 }) {
   const tagsMarkup = tags
     .map(tag => `<li class="modal-product__tag">${tag}</li>`)
@@ -85,11 +86,12 @@ export function createProductModal({
         <p class="modal-product__shipping-information">Shipping:${shippingInformation}</p>
         <p class="modal-product__return-policy">Return Policy: ${returnPolicy}</p>
         <p class="modal-product__price">Price: ${price} $</p>
-        <button class="modal-product__buy-btn" type="button">Buy</button>
-      </div>
+        <p class="modal-product__stock">Quantity in stock: ${stock} pcs</p>
+          </div>
 `;
 
-  refs.modalProduct.innerHTML = markup;
+  refs.modalProduct.innerHTML = '';
+  refs.modalProduct.insertAdjacentHTML('beforeend', markup);
 
   new Swiper('.modal-product__slider', {
     modules: [Navigation, Pagination, Autoplay, Zoom],

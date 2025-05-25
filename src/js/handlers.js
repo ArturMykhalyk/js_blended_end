@@ -99,6 +99,7 @@ export async function handleMoreBtnClick() {
 
 // Відкриття модального вікна з деталями
 export async function handleProductClick(event) {
+  refs.pcsNumber.value = 1;
   const productItem = event.target.closest('.products__item');
   if (!productItem) return;
 
@@ -119,6 +120,7 @@ export async function handleProductClick(event) {
     refs.btnAddCartModal.textContent = 'Add to Cart';
   }
   const product = await getProductsId(STORAGE_KEYS.getIdProduct());
+  STORAGE_KEYS.stock = product.stock;
   createProductModal(product);
 }
 
@@ -208,4 +210,16 @@ export function handletoggleTheme() {
   }
 
   console.log(STORAGE_KEYS.getTheme());
+}
+
+export function handlesubtractNumber() {
+  if (refs.pcsNumber.value > 1) {
+    refs.pcsNumber.value--;
+  }
+}
+
+export function handleAddNumber(e) {
+  if (refs.pcsNumber.value < STORAGE_KEYS.stock) {
+    refs.pcsNumber.value++;
+  }
 }

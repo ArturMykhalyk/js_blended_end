@@ -2,6 +2,7 @@
 import { refs } from './refs';
 export function openModal() {
   refs.modal.classList.add('modal--is-open');
+
   document.addEventListener('keydown', closeModalOnEsc);
 
   window.addEventListener('click', clickNoModal);

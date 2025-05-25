@@ -19,4 +19,7 @@ export const refs = {
   buyProductsBtn: document.querySelector('.cart-summary__btn'),
   scrollUpBtn: document.getElementById('scrollUpBtn'),
   toggleTheme: document.querySelector('[type="checkbox"]'),
+  minBtn: document.querySelector('.minus-js'),
+  plusBtn: document.querySelector('.plus-js'),
+  pcsNumber: document.querySelector('.counter-number'),
 };

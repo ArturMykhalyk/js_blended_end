@@ -48,6 +48,7 @@ export async function getProductsId(id) {
   const url = baseUrl + endPoint;
 
   const response = await axios.get(url);
+  console.log(response.data);
   return response.data;
 }
 
